@@ -282,7 +282,8 @@ var errInvalidWrappedToken = errors.New("Invalid wrapped token.")
 func (t WrappedTokenUnsealer) Token() (string, error) {
 	resp, err := VaultRequest{
 		goreq.Request{
-			Uri:             vaultPath("/v1/cubbyhole/response", ""),
+			Uri:             vaultPath("/v1/sys/wrapping/unwrap", ""),
+			Method: "POST",
 			MaxRedirects:    10,
 			RedirectHeaders: true,
 		}.WithHeader("X-Vault-Token", t.TempToken),
