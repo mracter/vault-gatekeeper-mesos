@@ -144,9 +144,9 @@ func (c *Client) requestPermToken(tempToken string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	vaultAddr.Path = "/v1/cubbyhole/response"
+	vaultAddr.Path = "/v1/sys/wrapping/unwrap"
 
-	req, err := http.NewRequest("GET", vaultAddr.String(), nil)
+	req, err := http.NewRequest("POST", vaultAddr.String(), nil)
 	if err != nil {
 		return "", err
 	}
